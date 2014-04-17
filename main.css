@@ -1,0 +1,23 @@
+.appt-block, .appt, .appts{
+	border: 1px solid #000;
+}
+
+.appts{
+	display: inline-block;
+	width: 95%;
+}
+
+.appt{
+	background-color: tan;
+}
+
+.appt-btn{
+	/*float: right;*/
+}
+
+.day{
+	display: inline-block;
+}
+.date{
+	/*float: right;*/
+}
