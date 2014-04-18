@@ -67,7 +67,7 @@ $(document).on('ready', function() {
 		date.text(d.toDateString()); //Mon # Year
 		
 		$('.container').append(apptBlock);
-		apptBlock.append(date).append(appts).append(apptBtn);
+		apptBlock.append(date).append(appts).append(apptBtn.text('Add Appt'));
 
 		count++;
 		var upDate = dateNum + count;

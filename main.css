@@ -1,11 +1,13 @@
-.body{
+body{
 	overflow: hidden;
+	background-color: #77C7E6;
 }
 .header{
 	width: 100%;
 	height: 100px;
 	background-color: #AAA;
 	margin-bottom: 30px;
+	box-shadow: 0 3px 3px #333;
 }
 
 .title{
@@ -14,17 +16,21 @@
 }
 
 /*.left-col{
-	/*float: left;*/
-	/*width: 10%;
-	height: 600px;*/
-	/*position: fixed;*/
-/*}*/
+	float: left;
+	width: 10%;
+	height: 600px;
+	position: fixed;
+}*/
 .appt-block{
 	margin-bottom: 10px;
+	box-shadow: 0 3px 3px #333;
+	background: -webkit-linear-gradient(left, #E25D5D , #60AFB6);
+	background-color: #E25D5D;
 }
-.appt-block, .appt, .appts{
+
+/*.appt-block, .appt, .appts{
 	border: 1px solid #000;
-}
+}*/
 
 .appts{
 	display: inline-block;
@@ -32,16 +38,29 @@
 }
 
 .appt{
-	background-color: tan;
+	background: -webkit-linear-gradient(left, #E25D5D , #60AFB6);
+	background-color: rgba(231, 12, 12, 0.4);
+	box-shadow: 0 3px 3px #333;
+	color: #FFF;
+	font-size: 1.1em;
+	width: 98%;
+	margin-left: 1%;
+	line-height: 2em;
+	padding: 0.3%;
+}
+
+.appt:hover{
+	background: -webkit-linear-gradient(right, #E25D5D, #60AFB6);
 }
 
 .appt-btn{
-	/*float: right;*/
+	width: 4%;
+	background-color: #375EFA;
+	box-shadow: 0 3px 3px #333;
+	margin-bottom: 5px;
 }
 
-/*.day{
-	display: inline-block;
-}*/
 .date{
-	/*float: right;*/
+	font-weight: bold;
+	text-shadow: 8px 9px 3px #070707;
 }
