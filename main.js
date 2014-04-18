@@ -1,14 +1,3 @@
-// var daysOfWeek = [{day: 'Sunday'},
-// 	{day: 'Monday'},
-// 	{day: 'Tuesday'},
-// 	{day: 'Wednesday'},
-// 	{day: 'Thursday'},
-// 	{day: 'Friday'},
-// 	{day: 'Saturday'}];
-
-
-
-
 $(document).on('ready', function() {
 
 	// INITIALIZE CALENDAR
@@ -17,14 +6,7 @@ $(document).on('ready', function() {
 	var dateNum = d.getDate(); //get day of the month (from 1-31)
 	var dateTime = d.getTime();
 
-  	// ELEMENT CONSTRUCTION
-  	// var apptBlock = $('<div class="appt-block">');
-  	// var day = $('<div class="day">');
-  	// var date = $('<div class="date">');
-  	// var appts = $('<div class="appts">');
-  	// var apptBtn = $('<button class="appt-btn">');
-  	// var input = $('<input type="text" class="input">');
-
+  	
   	// EVENT HANDLERS
   	
   	// Add appointment input box
@@ -42,7 +24,6 @@ $(document).on('ready', function() {
 
   		if(($(this).val() !== '') && (e.keyCode === 13)){
   			var appt = $('<p class="appt">');
-  			// console.log($(this).val());
   			$(this).closest('.appts').append(appt);
   			appt.text($(this).val());
   			$(this).val('');
@@ -51,54 +32,63 @@ $(document).on('ready', function() {
 
   	});
 
+  	// Edit appointment line on click.  On enter the appointment will be pushed to the bottom of the queue.
+  	$(document).on('click', '.appt', function(){
+  		var input = $('<input type="text" class="input">');
+  		input.val($(this).text());
+  		$(this).replaceWith(input);
+  		input.focus();
 
-// MAIN
+  	});
 
-// Temporary n-days load solution
-// var dWord = d.getDay();
+  	// Delete an appointment input with delete key if input block is empty
+  	$(document).on('keydown', '.input', function(e){
+
+  		if(($(this).val() === '') && (e.keyCode === 8)){
+
+  			$(this).remove();
+  		}
+
+  	});
 
 
+	// MAIN
 
-// IMPURE FUNCTION - depends on global initialize variables
-var createWeek = function(){
-	for (var i=0; i<7; i++){
+	// IMPURE FUNCTION - depends on global initialize variables
+	var createWeek = function(){
+		for (var i=0; i<7; i++){
 
-	var apptBlock = $('<div class="appt-block">');
-	// var day = $('<div class="day">');
-	var date = $('<div class="date">');
-	var appts = $('<div class="appts">');
-	var apptBtn = $('<button class="appt-btn">');
+		var apptBlock = $('<div class="appt-block">');
+		// var day = $('<div class="day">');
+		var date = $('<div class="date">');
+		var appts = $('<div class="appts">');
+		var apptBtn = $('<button class="appt-btn">');
 
-	// day.text((daysOfWeek[d.getDay()]).day); //M-F
-	date.text(d.toDateString()); //Mon # Year
-	// d.getMonth() + ' ' + d.getDate() + ' ' + d.getFullYear()
-	
-	$('.container').append(apptBlock);
-	apptBlock.append(date).append(appts).append(apptBtn);
+		date.text(d.toDateString()); //Mon # Year
+		
+		$('.container').append(apptBlock);
+		apptBlock.append(date).append(appts).append(apptBtn);
 
-	count++;
-	var upDate = dateNum + count;
-	d.setDate(upDate);
-	var upTime = dateTime + (86400000 * count);
-	d.setTime(upTime);
+		count++;
+		var upDate = dateNum + count;
+		d.setDate(upDate);
+		var upTime = dateTime + (86400000 * count);
+		d.setTime(upTime);
+		}
 	}
-}
 
 	while($(document).height() <= $(window).height()){
 		createWeek(); //Call function within scrolling event handler
 	}
 
 
-$(document).on('scroll', function(){
-	if(($(document).scrollTop() + $(window).height()) >= ($(document).height() * 0.9)){
-		createWeek();
-		console.log($(document).scrollTop());
-		console.log($(window).height());
-		console.log($(document).height());
-	}
-	
+	$(document).on('scroll', function(){
+		if(($(document).scrollTop() + $(window).height()) >= ($(document).height() * 0.9)){
+			createWeek();
+		}
+		
 
-});
+	});
 
 
 });
