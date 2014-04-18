@@ -1,36 +1,46 @@
 body{
 	/*overflow: hidden;*/
 	background-color: #77C7E6;
+	width: 100%;
 }
 .header{
 	width: 100%;
 	height: 100px;
+	background: -webkit-linear-gradient(left, #887C7C , #442170);
 	background-color: #AAA;
 	margin-bottom: 30px;
 	box-shadow: 0 3px 3px #333;
+	padding-top: 1%;
+	padding-left: 1%;
 }
 
 .title{
-
+	font-weight: bold;
+	color: rgb(176, 231, 126);
+	text-shadow: 8px 9px 3px #070707;
 	margin-top: 0;
 }
 
-/*.left-col{
-	float: left;
+.left-col{
+	display: inline-block;
 	width: 10%;
 	height: 600px;
 	position: fixed;
-}*/
+}
+
+.container{
+	margin-left: 10%;
+	margin-right: 1%;
+}
+
 .appt-block{
 	margin-bottom: 10px;
 	box-shadow: 0 3px 3px #333;
 	background: -webkit-linear-gradient(left, #E25D5D , #60AFB6);
 	background-color: #E25D5D;
+	padding-top: 0.3%%;
+	border-radius: 5px;
 }
-
-/*.appt-block, .appt, .appts{
-	border: 1px solid #000;
-}*/
 
 .appts{
 	display: inline-block;
@@ -47,6 +57,7 @@ body{
 	margin-left: 1%;
 	line-height: 2em;
 	padding: 0.3%;
+	font-variant: small-caps;
 }
 
 .appt:hover{
@@ -58,9 +69,12 @@ body{
 	background-color: #375EFA;
 	box-shadow: 0 3px 3px #333;
 	margin-bottom: 5px;
+	text-shadow: 1px 1px 20px #FFF, 1px -1px 20px #FFF, -1px -1px 20px #FFF, -1px 1px 20px #FFF;
 }
 
 .date{
 	font-weight: bold;
+	color: rgb(255, 215, 89);
 	text-shadow: 8px 9px 3px #070707;
+	margin-left: 1%;
 }

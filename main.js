@@ -83,7 +83,7 @@ $(document).on('ready', function() {
 
 
 	$(document).on('scroll', function(){
-		if(($(document).scrollTop() + $(window).height()) >= ($(document).height() * 0.9)){
+		if(($(document).scrollTop() + $(window).height()) >= ($(document).height() * 0.96)){
 			createWeek();
 		}
 		
