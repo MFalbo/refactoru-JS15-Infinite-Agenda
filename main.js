@@ -1,26 +1,35 @@
-var daysOfWeek = [{day: 'Sunday'},
-	{day: 'Monday'},
-	{day: 'Tuesday'},
-	{day: 'Wednesday'},
-	{day: 'Thursday'},
-	{day: 'Friday'},
-	{day: 'Saturday'}];
+// var daysOfWeek = [{day: 'Sunday'},
+// 	{day: 'Monday'},
+// 	{day: 'Tuesday'},
+// 	{day: 'Wednesday'},
+// 	{day: 'Thursday'},
+// 	{day: 'Friday'},
+// 	{day: 'Saturday'}];
+
+
+
 
 $(document).on('ready', function() {
 
+	// INITIALIZE CALENDAR
+	var count = 0;
+	var d = new Date(); //Create new date object
+	var dateNum = d.getDate(); //get day of the month (from 1-31)
+	var dateTime = d.getTime();
+
   	// ELEMENT CONSTRUCTION
-  	var apptBlock = $('<div class="appt-block">');
-  	var day = $('<div class="day">');
-  	var date = $('<div class="date">');
-  	var appts = $('<div class="appts">');
-  	var apptBtn = $('<button class="appt-btn">');
-  	var input = $('<input type="text" class="input">');
+  	// var apptBlock = $('<div class="appt-block">');
+  	// var day = $('<div class="day">');
+  	// var date = $('<div class="date">');
+  	// var appts = $('<div class="appts">');
+  	// var apptBtn = $('<button class="appt-btn">');
+  	// var input = $('<input type="text" class="input">');
 
   	// EVENT HANDLERS
   	
-
+  	// Add appointment input box
   	$(document).on('click', '.appt-btn', function(){
-  		// var input = $('<input type="text" class="input">');
+  		var input = $('<input type="text" class="input">');
 
   		// console.log('button clicked');
   		$(this).siblings('.appts').append(input);
@@ -28,7 +37,7 @@ $(document).on('ready', function() {
   	
   	});
 
-
+  	// On enter 'pin' appointment to appt-block, clear and remove input box.
   	$(document).on('keydown', '.input', function(e){
 
   		if(($(this).val() !== '') && (e.keyCode === 13)){
@@ -44,52 +53,52 @@ $(document).on('ready', function() {
 
 
 // MAIN
-var count = 0;
-for (var i=0; i<7; i++){
 
-	apptBlock = $('<div class="appt-block">');
-	day = $('<div class="day">');
-	date = $('<div class="date">');
-	appts = $('<div class="appts">');
-	apptBtn = $('<button class="appt-btn">');
+// Temporary n-days load solution
+// var dWord = d.getDay();
 
+
+
+// IMPURE FUNCTION - depends on global initialize variables
+var createWeek = function(){
+	for (var i=0; i<7; i++){
+
+	var apptBlock = $('<div class="appt-block">');
+	// var day = $('<div class="day">');
+	var date = $('<div class="date">');
+	var appts = $('<div class="appts">');
+	var apptBtn = $('<button class="appt-btn">');
+
+	// day.text((daysOfWeek[d.getDay()]).day); //M-F
+	date.text(d.toDateString()); //Mon # Year
+	// d.getMonth() + ' ' + d.getDate() + ' ' + d.getFullYear()
 	
-	var d = new Date(); //Create new date object
-	var dateNum = (d.getDate())+count; //get day of the month (from 1-31)
-	console.log('a', dateNum);
-	var dWord = (d.getDay()) + count;
-	// var dayWord = daysOfWeek[(d.getDay())+/*count*/].day; //get day of the week (from 0-6) and pull day property from dayOfWeek array
-	console.log('c', dayWord);
-
-	if(count > 6){
-		d.setDay(0);
-	// 	console.log('b', d.getDay());
-	// 	count = 0;
-		var dayWord = daysOfWeek[/*(d.getDay())+ */count].day; //get day of the week (from 0-6) and pull day property from dayOfWeek array
-
-		// var dayWord = daysOfWeek[(d.getDay())+count].day;
-	}
-	else{
-		var dayWord = daysOfWeek[/*(d.getDay())+ */count].day; //get day of the week (from 0-6) and pull day property from dayOfWeek array
-
-	}
-
-	day.text(dayWord);
-	date.text(dateNum);
-
 	$('.container').append(apptBlock);
-	apptBlock.append(day).append(date).append(appts).append(apptBtn);
+	apptBlock.append(date).append(appts).append(apptBtn);
 
 	count++;
+	var upDate = dateNum + count;
+	d.setDate(upDate);
+	var upTime = dateTime + (86400000 * count);
+	d.setTime(upTime);
+	}
 }
 
-// var d = new Date(); //Create new date object
-// var dateNum = d.getDate(); //get day of the month (from 1-31)
-// var dayWord = daysOfWeek[d.getDay()].day; //get day of the week (from 0-6) and pull day property from dayOfWeek array
+	while($(document).height() <= $(window).height()){
+		createWeek(); //Call function within scrolling event handler
+	}
 
-// day.text(dayWord);
-// date.text(dateNum);
 
+$(document).on('scroll', function(){
+	if(($(document).scrollTop() + $(window).height()) >= ($(document).height() * 0.9)){
+		createWeek();
+		console.log($(document).scrollTop());
+		console.log($(window).height());
+		console.log($(document).height());
+	}
+	
+
+});
 
 
 });
